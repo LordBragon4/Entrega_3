@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="shortcut icon" href="{% static 'IMG/icono.png' %}" type="image/png" /><!--Icono huella en title--> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mis Perris</title>
+	<link rel="stylesheet" href="{% static 'CSS/formulario-estilo.css' %}"><!-- Busqueda archivo CSS-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" href="{% static 'CSS/flexboxgrid.min.css' %}">
+
+
+  <link rel="stylesheet" type="text/css" href="{% static 'CSS/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'CSS/bootstrap-theme.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'CSS/bootstrapValidator.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'CSS/fonts.css' %}">
+
+  <script type="text/javascript" src="{% static 'JS/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/bootstrapvalidator.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/jquery.validate.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/val.js' %}"></script>
+
+</head>
+
+<body>
+	<div class="container" style="width:100%;">		
+			<nav class="row"><!-- Menú-->
+			  <div class="col-xs-12 col-sm-3">
+            <img  src="{% static 'IMG/logo.png' %}" id="logo" alt="no se pudo cargar la imagen"> 
+			  </div>
+			  <div class="col-xs-12 col-sm-1 menu">
+        <a href="{% url 'index'%}" style="color:white;">Inicio</a>
+			  </div>
+			  <div class="col-xs-12 col-sm-2 menu">Quienes Somos</div>
+			  <div class="col-xs-12 col-sm-1 menu">Servicios</div>  
+			  <div class="col-xs-12 col-sm-2 menu">Contáctanos</div>
+			</nav>
+
+			<script>
+ 
+                function tecla(event){
+                // PARA VER QUE TECLA ESTA PRESIONADO 
+                // alert(event.keyCode);
+
+                //VALIDO LA TECLA PRESIONADA
+                if(event.keyCode == 13){ //13 = ENTER
+                alert('Hola'); //AQUI PUEDES PONER EL ENVIO DEL FORMULARIO : document.formulario.submit; 
+                }
+                }
+
+            </script>
+        <form class="well form-horizontal" id="formulario" style="padding-top: 15%; padding-bottom: 15%">
+
+		 <!-- Titulo del formulario -->
+         <center><legend >Registro Exitoso</legend>
+               
+            <div>
+                <label>Estimado(a) {{user.nombre}} {{user.paterno}} se ha registrado con exito,</label>
+                <label> ya puede iniciar sesion, apoyarnos en nuestra labor y adoptar a uno de nuestros amados perris</label>
+            </div>
+            
+            <!-- Button -->
+            <div>
+                <a href="{% url 'login' %}" class="btn" style="color:white; font-weight: bold; ">Iniciar Sesion</a> 
+            </div>
+        </center> 
+    </form>
+    </div><!-- /.container -->
+</body>
+</html>

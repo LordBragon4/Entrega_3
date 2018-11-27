@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="shortcut icon" href="{% static 'IMG/icono.png' %}" type="image/png" /><!--Icono huella en title--> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mis Perris</title>
+	<link rel="stylesheet" href="{% static 'CSS/formulario-estilo.css' %}"><!-- Busqueda archivo CSS-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" href="{% static 'CSS/flexboxgrid.min.css' %}">
+
+
+  <link rel="stylesheet" type="text/css" href="{% static 'CSS/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'CSS/bootstrap-theme.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'CSS/bootstrapValidator.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'CSS/fonts.css' %}">
+
+  <script type="text/javascript" src="{% static 'JS/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/bootstrapvalidator.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/jquery.validate.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/val.js' %}"></script>
+
+</head>
+
+<body>
+
+  
+	<div class="container" style="width:100%;">		
+			<nav class="row"><!-- Menú-->
+			  <div class="col-xs-12 col-sm-3">
+            <img  src="{% static 'IMG/logo.png' %}" id="logo" alt="no se pudo cargar la imagen"> 
+			  </div>
+			  <div class="col-xs-12 col-sm-1 menu">
+        <a href="{% url 'index'%}" style="color:white;">Inicio</a>
+			  </div>
+			  <div class="col-xs-12 col-sm-2 menu">Quienes Somos</div>
+			  <div class="col-xs-12 col-sm-1 menu">Servicios</div>  
+			  <div class="col-xs-12 col-sm-2 menu">Contáctanos</div>
+			</nav>
+
+			<script>
+ 
+function tecla(event){
+// PARA VER QUE TECLA ESTA PRESIONADO 
+// alert(event.keyCode);
+
+//VALIDO LA TECLA PRESIONADA
+if(event.keyCode == 13){ //13 = ENTER
+alert('Hola'); //AQUI PUEDES PONER EL ENVIO DEL FORMULARIO : document.formulario.submit; 
+}
+}
+
+    </script>
+
+
+
+
+    	<form class="well form-horizontal" action="#" method="POST"  id="formulario" >
+				{% csrf_token %}
+				<fieldset style="padding-top: 5%; padding-bottom: 13%">
+
+				<!-- Titulo del formulario -->
+				<center><legend >Iniciar Sesion
+                </legend></center>
+
+
+        <center><a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger">Ingresar con Gmail</a></center><br>
+        
+        <br>
+				<!-- Run-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Run</label>  
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+						
+							<input  name="run"  required min="1000000" max="99999999"class="form-control"  type="number">
+						</div>
+					</div>
+			</div>
+
+				<!-- Contraseña-->
+				<div class="form-group" style="margin-bottom: 0%">
+  					<label class="col-md-4 control-label">Contraseña</label>  
+  					<div class="col-md-4 inputGroupContainer">
+  						<div class="input-group">
+  						
+  							<input  name="password"  required placeholder="" class="form-control" minlength="8" maxlength="32"  type="password">
+    					</div>
+                      </div>
+                </div>
+             
+
+      <!-- Button -->
+      <div class="form-group" style="padding-top: 2%">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4">
+          <center><button type="submit" class="btn btn-success">Ingresar</button></center>     
+        </div>
+      </div>
+       <!-- Registrarse -->
+      <center><div>
+        <label class="control-label">¿No tiene Cuenta? </label>
+        <a class="control-label" href="{% url 'formulario'%}" >Registrarse</a>
+      </div></center>
+
+    </fieldset>
+</form>
+</div>
+    </div><!-- /.container -->
+</body>
+</html>

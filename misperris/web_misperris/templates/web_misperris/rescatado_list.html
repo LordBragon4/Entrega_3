@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mis Perris</title>
+  <!-- ARCHIVOS CSS---------------------------------------------------------------------------------------------->
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/crud-estilo.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'CSS/index-estilo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="{% static 'JS/crud-js.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/bootstrap.min.js' %}"></script>
+  
+  </head>
+
+  <body>
+
+    <div class="container" style="width:100%;">
+
+     <!--MENU------------------------------------------------------------------------------------->
+      <nav class="row">
+        <div class="col-xs-12 col-sm-3">
+          <img  src="{% static 'IMG/logo.png' %}" id="logo" alt="no se pudo cargar la imagen">  
+        </div>
+        <div class="col-xs-12 col-sm-3 menu">
+          <a href="{% url 'rescatado_list' %}" style="color:white;">Administrar Perris</a>
+        </div>
+        <div class="col-xs-12 col-sm-3 menu boton" style="margin-bottom:3%;">
+          <a href="{% url 'index' %}" style="color:white;">Cerrar Sesión</a>
+        </div>
+      </nav>
+      <!--------------------------------------------------------------------------------------------->
+
+
+
+      <!--TABLA-------------------------------------------------------------------------------------->
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-xs-5 col-md-6 col-sm-4 col-lg-6">
+              <h2>Administración de <b>Rescatados</b></h2>
+            </div>
+            <div class="col-xs-1 col-md-1 col-sm-2 col-lg-1">
+              <a href="{% url 'rescatado_list_disponible' %}" class="btn btn-info"><span>Solo Disponibles</span></a>
+            </div>
+            <div class="col-xs-1 col-md-1 col-sm-2 col-lg-1">
+              <a href="{% url 'rescatado_list_rescatado' %}" class="btn btn-info"><span>Solo Rescatados</span></a>
+            </div>
+            <div class="col-xs-1 col-md-1 col-sm-2 col-lg-1">
+              <a href="{% url 'rescatado_list_adoptado' %}" class="btn btn-info"><span>Solo Adoptados</span></a>
+            </div>
+            <div class="col-xs-1 col-md-1 col-sm-2 col-lg-1">
+              <a href="{% url 'rescatado_list' %}" class="btn btn-info"><span>Todos</span></a>
+            </div>
+            <div class="col-xs-3 col-md-3 col-sm-2 col-lg-2">
+              <a href="{% url 'rescatado_create' %}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Agregar nuevo Perrito</span></a>
+            </div>
+          </div>
+        </div>
+
+        {% block content %}
+        <table class="table table-wrapper">
+          <thead>
+            <tr>
+              <th>Fotografía</th>
+              <th>Nombre</th>
+              <th>Raza Predominante</th>
+              <th>Descripción</th>
+              <th>Estado</th>
+              <th>Accion</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if object_list %}
+            {% for rescatado in object_list %}
+            <tr>
+              <td>
+                  <a href="http://127.0.0.1:8000/media/{{ rescatado.foto }}">
+                    <img src="http://127.0.0.1:8000/media/{{ rescatado.foto }}" width="100%">
+                      FOTOGRAFÍA DE {{ rescatado.nombre }}
+                  </a>
+              </td>
+              <td>{{ rescatado.nombre }}</td>
+              <td>{{ rescatado.raza }}</td>
+              <td>{{ rescatado.descr }}</td>
+              <td>{{ rescatado.estado }}</td>
+              <td>
+                <a href="{% url 'rescatado_update' rescatado.nombre %}" class="Edit"><i class="material-icons"  title="Editar">&#xE254;</i></a>
+                <a href="{% url 'rescatado_delete' rescatado.nombre %}" class="Delete"><i class="material-icons"  title="Eliminar">&#xE872;</i></a>
+              </td>
+            </tr>
+            {% endfor %}
+
+            {% else %}
+            <h1>No hay datos</h1>
+
+            {% endif %}
+          </tbody>
+        </table>
+        {% endblock %}
+      </div>
+
+    </div>
+  </body>
+</html>

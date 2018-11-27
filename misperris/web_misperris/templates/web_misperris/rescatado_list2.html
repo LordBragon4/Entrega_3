@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mis Perris</title>
+  <!-- ARCHIVOS CSS--------------------------------------------------------------------------------------------
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/crud-estilo.css' %}">-->
+     <link rel="stylesheet" type="text/css" href="{% static 'CSS/index-estilo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="{% static 'JS/crud-js.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/bootstrap.min.js' %}"></script>
+  
+  </head>
+
+  <body>
+
+    <div class="container" style="width:100%;">
+
+     <!--MENU------------------------------------------------------------------------------------->
+      <nav class="row">
+        <div class="col-xs-12 col-sm-3">
+          <img  src="{% static 'IMG/logo.png' %}" id="logo" alt="no se pudo cargar la imagen">  
+        </div>
+        <div class="col-xs-12 col-sm-1 menu">
+          <a href="{% url 'usuario' %}" style="color:white;">Adoptar</a>
+        </div>
+        <div class="col-xs-12 col-sm-2 menu">Quienes Somos</div>
+        <div class="col-xs-12 col-sm-1 menu">Servicios</div>  
+        <div class="col-xs-12 col-sm-2 menu">Contáctanos</div>  
+        <div class="col-xs-12 col-sm-2 menu boton" style="margin-bottom:3%;">
+          <a href="{% url 'index' %}" style="color:white;">Cerrar Sesión</a>
+        </div>
+      </nav>
+      <!--------------------------------------------------------------------------------------------->
+
+
+
+      <!--TABLA-------------------------------------------------------------------------------------->
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-xs-9 col-md-8 col-sm-9 col-lg-9">
+              <h2>Lista de Perritos Disponibles</h2>
+            </div>
+          </div>
+        </div>
+
+        {% block content %}
+        <table class="table table-wrapper">
+          <thead>
+            <tr>
+              <th>Fotografía</th>
+              <th>Nombre</th>
+              <th>Raza Predominante</th>
+              <th>Descripción</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if object_list %}
+            {% for rescatado in object_list %}
+            <tr>
+              <td>
+                  <a href="http://127.0.0.1:8000/media/{{ rescatado.foto }}">
+                    
+                  Ver a {{ rescatado.nombre }}
+                </a>
+              </td>
+              <td>{{ rescatado.nombre }}</td>
+              <td>{{ rescatado.raza }}</td>
+              <td>{{ rescatado.descr }}</td>
+              <td>{{ rescatado.estado }}</td>
+              
+            </tr>
+            {% endfor %}
+
+            {% else %}
+            <h1>No hay datos</h1>
+
+            {% endif %}
+          </tbody>
+        </table>
+        {% endblock %}
+      </div>
+
+    </div>
+  </body>
+</html>

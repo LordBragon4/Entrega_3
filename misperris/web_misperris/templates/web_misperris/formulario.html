@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="shortcut icon" href="{% static 'IMG/icono.png' %}" type="image/png" /><!--Icono huella en title--> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mis Perris</title>
+	<link rel="stylesheet" href="{% static 'CSS/formulario-estilo.css' %}"><!-- Busqueda archivo CSS-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" href="{% static 'CSS/flexboxgrid.min.css' %}">
+
+  <script type="text/javascript" src="{% static 'JS/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/bootstrapvalidator.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/jquery.validate.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/val.js' %}"></script>
+
+</head>
+
+<body>
+	<div class="container" style="width:100%;">		
+			<nav class="row"><!-- Menú-->
+			  <div class="col-xs-12 col-sm-3">
+            <img  src="{% static 'IMG/logo.png' %}" id="logo" alt="Imagen No Disponible"> 
+			  </div>
+			  <div class="col-xs-12 col-sm-1 menu">
+        <a href="{% url 'index'%}" style="color:white;">Inicio</a>
+			  </div>
+			  <div class="col-xs-12 col-sm-2 menu">Quienes Somos</div>
+        <div class="col-xs-12 col-sm-2 menu">Contáctanos</div>
+        <div class="col-xs-12 col-sm-2 menu boton" >
+          <a href="{% url 'login'%}" style="color:white;" >Iniciar Sesion</a>
+      </div>
+			</nav>
+
+			<script>
+ 
+function tecla(event){
+// PARA VER QUE TECLA ESTA PRESIONADO 
+// alert(event.keyCode);
+
+//VALIDO LA TECLA PRESIONADA
+if(event.keyCode == 13){ //13 = ENTER
+alert('Hola'); //AQUI PUEDES PONER EL ENVIO DEL FORMULARIO : document.formulario.submit; 
+}
+}
+
+    </script>
+
+
+
+
+    	<form class="well form-horizontal" method="POST"  id="formulario">
+            {% csrf_token %}
+				<fieldset>
+
+				<!-- Titulo del formulario -->
+				<center><legend >Registro</legend></center>
+
+
+				<!--Correo Electronico-->
+				<div class="form-group">
+  					<label class="col-md-4 control-label">Correo electrónico</label>  
+    				<div class="col-md-4 inputGroupContainer">
+    					<div class="input-group">
+        					<span class="input-group-addon"><i class="icon-mail4"></i></span>
+  							<input name="correo" required placeholder="ejemplo@perris.cl" class="form-control"  type="email">
+    					</div>
+  					</div>
+				</div>
+
+        <!-- Contraseña-->
+				<div class="form-group" >
+  					<label class="col-md-4 control-label">Contraseña</label>  
+  					<div class="col-md-4 inputGroupContainer">
+  						<div class="input-group">
+  							<span class="input-group-addon"><i class="icon-user"></i></span>
+  							<input  name="password"  required placeholder="" class="form-control" minlength="8" maxlength="32"  type="password">
+    					</div>
+           </div>
+  					
+        </div>
+
+				<!-- Run-->
+				<div class="form-group">
+  					<label class="col-md-4 control-label">Run</label>  
+  					<div class="col-md-4 inputGroupContainer">
+  						<div class="input-group">
+  							<span class="input-group-addon"><i class="icon-user"></i></span>
+  							<input  name="run"  required placeholder="sin espacios, ni digito verificador" min="1000000" maxlength="99999999" class="form-control"  type="number">
+    					</div>
+  					</div>
+        </div>
+        
+
+        
+
+
+				<!-- Nombre1-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" >Nombre</label> 
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="icon-user"></i></span>
+                <input name="nombre" required placeholder="Nombre" class="form-control" minlength="3" maxlength="15"  type="text" onkeypress="return soloLetras(event)">
+              </div>
+            </div>
+        </div>
+
+        <!--nombre2-->
+         <div class="form-group">
+            <label class="col-md-4 control-label" >Segundo Nombre</label> 
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="icon-user"></i></span>
+                <input name="snombre" required placeholder="Segundo nombre" class="form-control" minlength="3" maxlength="15"  type="text" onkeypress="return soloLetras(event)">
+              </div>
+            </div>
+        </div>
+
+
+        <!--Apellido1-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" >Apellido Paterno</label> 
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="icon-user"></i></span>
+                <input name="paterno" required placeholder="Primer apellido" class="form-control" minlength="3" maxlength="20"  type="text" onkeypress="return soloLetras(event)">
+              </div>
+            </div>
+        </div>
+
+        <!--apellido2-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" >Apellido Materno</label> 
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="icon-user"></i></span>
+                <input name="materno" required placeholder="Segundo apellido" class="form-control" minlength="3" maxlength="20"  type="text" onkeypress="return soloLetras(event)">
+              </div>
+            </div>
+        </div>
+
+
+        <!--Fecha de nacimiento-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" >Fecha de nacimiento</label> 
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="icon-calendar"></i></span>
+                <input name="fnac" required placeholder="Fecha de nacimiento" class="form-control" max="2002-12-31" type="date">
+              </div>
+            </div>
+        </div>
+        
+
+				<!-- Telefono-->
+				<div class="form-group">
+  					<label class="col-md-4 control-label">Telefono #</label>  
+    				<div class="col-md-4 inputGroupContainer">
+    					<div class="input-group">
+       		 			<span class="input-group-addon"><i class="icon-phone"></i></span>
+  							<input name="telefono" required placeholder="9999 9999" class="form-control" min="10000000" max="99999999"type="number">
+   	 					</div>
+  					</div>
+				</div>
+
+        <!--Region-->
+        <div class="form-group"> 
+          <label class="col-md-4 control-label">Región</label>
+          <div class="col-md-4 selectContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon-location"></i></span>
+               <select name="region" id="regiones" class="form-control" required></select>
+            </div>
+          </div>
+        </div>
+
+         <!--Ciudad-->
+        <div class="form-group"> 
+          <label class="col-md-4 control-label">Ciudad/Comuna</label>
+          <div class="col-md-4 selectContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon-location2"></i></span>
+             <select name="ciudad" id="comunas" class="form-control" required></select>
+            </div>
+          </div>
+        </div>
+		
+			<!-- vivienda-->
+				<div class="form-group"> 
+          <label class="col-md-4 control-label">Tipo de Vivienda</label>
+          <div class="col-md-4 selectContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon-home3"></i></span>
+              <select name="vivienda"  class="form-control selectpicker" required>
+                <option value="" disabled selected>Seleccione tipo de vivienda</option>
+                <option value="Patio grande">Patio grande</option>
+                <option value="Patio pequeño">Patio pequeño</option>
+                <option value="Sin patio">Sin patio</option>
+                <option value="Departamento">Departamento</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4">
+          <center><button type="submit" class="btn" style="color:white; font-weight: bold; ">Registrar</button></center>     
+        </div>
+      </div>
+
+    </fieldset>
+</form>
+
+</div>
+    </div><!-- /.container -->
+</body>
+</html>

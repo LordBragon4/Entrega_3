@@ -1,0 +1,58 @@
+*{
+	margin:0;
+	border:0;
+}
+
+body{
+	max-width: 100%;
+}
+
+.container{
+	background: #76D7C4  ;
+
+}
+
+nav {
+	/*ubicar menu a la derecha*/
+	background-color:#76D7C4;
+	text-align:center;
+}
+
+#logo{
+	padding-top:8px;
+	padding-bottom:8px;
+    width:90%;	
+}
+
+.menu {
+	background-color:#6FDFC1;
+	color: white;
+	font-size: 20px;
+	padding-top:20px;
+	padding-bottom:15px;
+	margin-top:2px;
+	margin-bottom:2px;
+}
+
+
+.btn{
+	background: #3498DB;
+}
+
+
+
+
+
+
+
+#success_message{ display: none;}
+
+
+
+.hr{
+	color: black;
+}
+
+
+
+
